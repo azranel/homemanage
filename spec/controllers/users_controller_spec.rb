@@ -7,6 +7,10 @@ describe UsersController do
       get 'new'
       response.should be_success
     end
+
+    it "returns User object" do
+      
+    end
   end
 
 end

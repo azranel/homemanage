@@ -44,26 +44,11 @@ describe User do
     end
   end
 
-  describe "#authenticate" do
-    before :all do
-      5.times do 
-        u = FactoryGirl.build(:user)
-        u.save
-      end
-    end
-
-    it "should authenticate if email is good" do
-      user = FactoryGirl.build(:user)
-      user.save
-      expect(user).to eq(User.authenticate(user.email, user.password))
-    end
-  end
-
   describe "#encrypt_password" do
     it "should encrypt password" do
       user = FactoryGirl.build(:user, password: "sample")
       user.save
-      expect(user.password).to eq(BCrypt::Engine.hash_secret("sample",user.salt))
+      expect(user.password).to eq(BCrypt::Engine.hash_secret("sample", user.salt))
     end
   end
 end

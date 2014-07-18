@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-  attr_accessor :password
+  attr_accessor :email, :password
+  has_and_belongs_to_many :apartments
 
   validates :firstname, :lastname, :email, :password, :salt, presence: true
   validates :email, format: { with: /.+@.+\..+/, message: "only email format allowed" }
@@ -13,7 +14,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  def authenticate
+  def self.authenticate(email, password)
     user = find_by_email(email)
     if user && user.password == BCrypt::Engine.hash_secret(password, user.salt)
       user

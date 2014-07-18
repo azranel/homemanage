@@ -2,7 +2,6 @@
 
 FactoryGirl.define do
   factory :apartment do
-    name "MyString"
-    address "MyString"
+    name Faker::Address.street_name
   end
 end

@@ -51,4 +51,25 @@ describe User do
       expect(user.password).to eq(BCrypt::Engine.hash_secret("sample", user.salt))
     end
   end
+
+  describe "associations" do
+    before :all do
+      3.times do
+        a = FactoryGirl.build(:apartment)
+        a.save
+      end
+    end
+
+    it "should have apartments" do
+      u = FactoryGirl.build(:user)
+      u.save
+      first_apartment = Apartment.first
+      second_apartment = Apartment.last
+      u.apartments << first_apartment
+      u.apartments << second_apartment
+      expect(u.apartments).to eq([first_apartment, second_apartment])
+    end
+
+
+  end
 end

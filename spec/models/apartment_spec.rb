@@ -1,9 +1,6 @@
 require 'spec_helper'
 
 describe Apartment do
-  pending "add some examples to (or delete) #{__FILE__}"
-
-
   describe "validations" do
     it "should have name" do
       expect(Apartment.new).not_to be_valid
@@ -26,5 +23,6 @@ describe Apartment do
       a.users << second_user
       expect(a.users.all).to eq([first_user, second_user])
     end
+    
   end
 end

@@ -2,12 +2,12 @@
 
 FactoryGirl.define do
   salt = BCrypt::Engine.generate_salt
-  factory :user do
-    firstname Faker::Name.first_name
-    lastname Faker::Name.last_name
-    email Faker::Internet.email
-    salt salt
-    password BCrypt::Engine.hash_secret("123456", salt)
+  factory :user do |u|
+    u.firstname { Faker::Name.first_name}
+    u.lastname { Faker::Name.last_name }
+    u.email { Faker::Internet.email }
+    u.salt {salt}
+    u.password { BCrypt::Engine.hash_secret("123456", salt) }
   end
 
   factory :userjk do

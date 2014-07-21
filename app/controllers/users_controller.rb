@@ -12,7 +12,7 @@ class UsersController < ApplicationController
       flash[:notice] = "Account created successful."
       redirect_to @user
     else
-      flash[:notice] = "Wrong params."
+      flash.now.alert = "Wrong params."
       render :new
     end
   end

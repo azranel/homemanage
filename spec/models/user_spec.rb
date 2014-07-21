@@ -26,11 +26,6 @@ describe User do
       expect(@user).not_to be_valid
     end
 
-    it "password should have salt" do
-      @user.salt = nil
-      expect(@user).not_to be_valid
-    end
-
     it "password should be encrypted" do
       @user.save
     end
